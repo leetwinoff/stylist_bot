@@ -6,5 +6,5 @@ router = DefaultRouter()
 router.register(r'telegram-users', TelegramUserViewSet)
 
 urlpatterns = [
-    path("/api/", include(router.urls))
+    path("api/", include(router.urls))
 ]
