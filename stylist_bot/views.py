@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from rest_framework import viewsets
 
-# Create your views here.
+from stylist_bot.models import TelegramUser
+from stylist_bot.serializers import TelegramUserSerializer
+
+
+class TelegramUserViewSet(viewsets.ModelViewSet):
+    queryset = TelegramUser.objects.all()
+    serializer_class = TelegramUserSerializer
