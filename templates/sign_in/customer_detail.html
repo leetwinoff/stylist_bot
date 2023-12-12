@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container" id="shimmer-container">
+        <h1 id="shimmer-text" style="font-family: 'Heiti SC'">{{ customer.full_name }}</h1>
+
+        <dl class="row">
+            <dt class="col-sm-3">Telegram ID:</dt>
+            <dd class="col-sm-9">{{ customer.tg_id }}</dd>
+
+            <dt class="col-sm-3">Telegram Username:</dt>
+            <dd class="col-sm-9">{{ customer.tg_username }}</dd>
+
+            <dt class="col-sm-3">Email:</dt>
+            <dd class="col-sm-9">{{ customer.email }}</dd>
+
+            <dt class="col-sm-3">Service Choice:</dt>
+            <dd class="col-sm-9">{{ customer.service_choice }}</dd>
+
+            <dt class="col-sm-3">Created At:</dt>
+            <dd class="col-sm-9">{{ customer.created_at }}</dd>
+        </dl>
+
+        <a href="{% url 'customers' %}" class="btn btn-secondary">Back to Customer List</a>
+    </div>
+
+    <script>
+        // Function to generate a random color
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        // Function to change the text color on mouseover
+        function shimmerText() {
+            const shimmerText = document.getElementById('shimmer-text');
+            shimmerText.style.color = getRandomColor();
+        }
+
+        const shimmerContainer = document.getElementById('shimmer-container');
+
+        // Add mouseover and mouseout event listeners to the container
+        shimmerContainer.addEventListener('mouseover', shimmerText);
+        shimmerContainer.addEventListener('mouseout', function() {
+            const shimmerText = document.getElementById('shimmer-text');
+            shimmerText.style.color = ''; // Reset to default color
+        });
+    </script>
+{% endblock %}

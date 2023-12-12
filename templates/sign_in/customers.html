@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="container">
+        <h1>Sign-In Records</h1>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Telegram ID</th>
+                    <th>Telegram Username</th>
+                    <th>Email</th>
+                    <th>Full Name</th>
+                    <th>Service Choice</th>
+                    <th>Created At</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in object_list %}
+                    <tr>
+                        <td><a href="{% url 'customer-detail' record.pk %}">{{ record.pk }}</a></td>
+                        <td>{{ record.tg_id }}</td>
+                        <td>
+                            {{ record.tg_username }}
+                        </td>
+                        <td>{{ record.email }}</td>
+                        <td>{{ record.full_name }}</td>
+                        <td>{{ record.service_choice }}</td>
+                        <td>{{ record.created_at }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="6">No sign-in records available.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
